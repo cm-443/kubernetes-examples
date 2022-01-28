@@ -1,0 +1,33 @@
+//ingress configuration file
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress  
+  labels:
+    name: web-ingress
+spec:
+  rules:
+  - host: mysite.local
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: websrvc
+            port: 
+              number: 8080
+
+
+//loadbalancer configuration file
+kind: Service
+apiVersion: v1
+metadata:
+  name:  awslb
+spec:
+  selector:
+    app:  myPod
+  type:  LoadBalancer
+  ports:
+  -  port:  8080
+     targetPort:  80
