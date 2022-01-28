@@ -18,6 +18,7 @@ spec:
     path: /tmp
     server: 172.17.0.2
 
+---
 
 //here is a persistent volume claim 
 apiVersion: v1
