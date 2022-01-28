@@ -22,20 +22,14 @@ spec:
 
 //here is a persistent volume claim 
 apiVersion: v1
-kind: PersistentVolume
+kind: PersistentVolumeClaim
 metadata:
-  name: pv01
+  name: mypvc
 spec:
-  capacity:
-    storage: 2Gi
+  storageClassName: admstor
+  resources:
+    requests:
+      storage: 1Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Recycle
-  storageClassName: admstor
-  mountOptions:
-    - hard
-    - nfsvers=4.1
-  nfs:
-    path: /tmp
-    server: 172.17.0.2
